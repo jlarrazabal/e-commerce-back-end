@@ -16,10 +16,10 @@ Category.hasMany(Product, {
   OnUpdate: "CASCADE"
 });
 // Products belongToMany Tags (through ProductTag)
-Product.belongsToMany(Tag, {through: "ProductTag"});
+Product.belongsToMany(Tag, {through: ProductTag});
 
 // Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, {through: "ProductTag"});
+Tag.belongsToMany(Product, {through: ProductTag});
 
 module.exports = {
   Product,
