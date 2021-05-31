@@ -55,19 +55,26 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
-    const updatedCategory = await Category.update({
-      category_name: req.body.category_name,
-      where: {
-        id: req.params.id
-      }
-    });
+    const updatedCategory = await Category.update(
+      {category_name: req.body.category_name},
+      {where: {id: req.params.id}});
     if (!updatedCategory) {
       res.status(404).json({
         message: "Not Found. There is no category associated with the id that was provided."
       });
-      return;
     } else {
-      res.status(201).json(updatedCategory);
+      try {
+        const categoryData = await Category.findByPk(req.params.id);
+        if (!categoryData) {
+          res.status(404).json({
+            message: "Not Found. There is no category associated with the id that was provided."
+          });
+        } else {
+          res.status(200).json(categoryData);
+        }
+      } catch (err) {
+        res.status(500).json(err);
+      }
     }
   } catch (err) {
     res.status(500).json(err);
