@@ -52,19 +52,26 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const updatedTag = await Tag.update({
-      category_name: req.body.tag_name,
-      where: {
-        id: req.params.id
-      }
-    });
+    const updatedTag = await Tag.update(
+      {tag_name: req.body.tag_name},
+      {where: {id: req.params.id}});
     if (!updatedTag) {
       res.status(404).json({
-        message: "Not Found. There is no category associated with the id that was provided."
+        message: "Not Found. There is no tag associated with the id that was provided."
       });
-      return;
     } else {
-      res.status(201).json(updatedTag);
+      try {
+        const tagData = await Tag.findByPk(req.params.id);
+        if (!tagData) {
+          res.status(404).json({
+            message: "Not Found. There is no category associated with the id that was provided."
+          });
+        } else {
+          res.status(200).json(tagData);
+        }
+      } catch (err) {
+        res.status(500).json(err);
+      }
     }
   } catch (err) {
     res.status(500).json(err);
