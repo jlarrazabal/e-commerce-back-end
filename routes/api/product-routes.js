@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
     });
     if (!productData) {
       res.status(404).json({
-        message: "Not Found. There is no product associated with the id that was provided."
+        message: 'Not Found. There is no product associated with the id that was provided.'
       });
       return;
     } else {
@@ -132,7 +132,7 @@ router.delete('/:id', async (req, res) => {
     });
     if (!deletedProduct) {
       res.status(404).json({
-        message: "Not Found. There is no product associated with the id that was provided."
+        message: 'Not Found. There is no product associated with the id that was provided.'
       });
       return;
     } else {

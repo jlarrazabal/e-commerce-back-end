@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
     });
     if (!categoryData) {
       res.status(404).json({
-        message: "Not Found. There is no category associated with the id that was provided."
+        message: 'Not Found. There is no category associated with the id that was provided.'
       });
     } else {
       res.status(200).json(categoryData);
@@ -60,14 +60,14 @@ router.put('/:id', async (req, res) => {
       {where: {id: req.params.id}});
     if (!updatedCategory) {
       res.status(404).json({
-        message: "Not Found. There is no category associated with the id that was provided."
+        message: 'Not Found. There is no category associated with the id that was provided.'
       });
     } else {
       try {
         const categoryData = await Category.findByPk(req.params.id);
         if (!categoryData) {
           res.status(404).json({
-            message: "Not Found. There is no category associated with the id that was provided."
+            message: 'Not Found. There is no category associated with the id that was provided.'
           });
         } else {
           res.status(200).json(categoryData);
@@ -91,7 +91,7 @@ router.delete('/:id', async (req, res) => {
     });
     if (!deletedCategory) {
       res.status(404).json({
-        message: "Not Found. There is no category associated with the id that was provided."
+        message: 'Not Found. There is no category associated with the id that was provided.'
       });
       return;
     } else {

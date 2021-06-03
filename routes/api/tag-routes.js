@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
     });
     if (!tagData) {
       res.status(404).json({
-        message: "Not Found. There is no tag associated with the id that was provided."
+        message: 'Not Found. There is no tag associated with the id that was provided.'
       });
     } else {
       res.status(200).json(tagData);
@@ -57,14 +57,14 @@ router.put('/:id', async (req, res) => {
       {where: {id: req.params.id}});
     if (!updatedTag) {
       res.status(404).json({
-        message: "Not Found. There is no tag associated with the id that was provided."
+        message: 'Not Found. There is no tag associated with the id that was provided.'
       });
     } else {
       try {
         const tagData = await Tag.findByPk(req.params.id);
         if (!tagData) {
           res.status(404).json({
-            message: "Not Found. There is no category associated with the id that was provided."
+            message: 'Not Found. There is no tag associated with the id that was provided.'
           });
         } else {
           res.status(200).json(tagData);
@@ -88,7 +88,7 @@ router.delete('/:id', async (req, res) => {
     });
     if (!deletedTag) {
       res.status(404).json({
-        message: "Not Found. There is no tag associated with the id that was provided."
+        message: 'Not Found. There is no tag associated with the id that was provided.'
       });
       return;
     } else {
